@@ -12,7 +12,7 @@ const cars = [
     power: "1,479 hp",
     transmission: "7-speed DSG",
     details: "Limited production hypercar with quad-turbocharged W16 engine",
-    photo: "bughatti.jpeg" // Add photo link here
+    photo: "./pics/bughatti.jpeg" // Add photo link here
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const cars = [
     power: "986 hp",
     transmission: "8-speed dual-clutch",
     details: "Plug-in hybrid supercar with advanced aerodynamics",
-    photo: "ferari.jpeg" // Add photo link here
+    photo: "./pics/ferari.jpeg" // Add photo link here
   },
   {
     id: 3,
@@ -36,7 +36,7 @@ const cars = [
     power: "285 hp",
     transmission: "8-speed automatic",
     details: "Iconic off-road SUV with advanced 4x4 capability",
-    photo: "jeep.jpeg" // Add photo link here
+    photo: "./pics/jeep.jpeg" // Add photo link here
   },
   {
     id: 4,
@@ -48,7 +48,7 @@ const cars = [
     power: "769 hp",
     transmission: "7-speed automated manual",
     details: "V12-powered flagship supercar with scissor doors",
-    photo: "lambo.jpeg" // Add photo link here
+    photo: "./pics/lambo.jpeg" // Add photo link here
   },
   {
     id: 5,
@@ -60,7 +60,7 @@ const cars = [
     power: "903 hp",
     transmission: "7-speed dual-clutch",
     details: "Hybrid hypercar with active aerodynamics",
-    photo: "mclaren.jpeg" // Add photo link here
+    photo: "./pics/mclaren.jpeg" // Add photo link here
   },
   {
     id: 6,
@@ -72,20 +72,37 @@ const cars = [
     power: "720 hp",
     transmission: "7-speed dual-clutch",
     details: "Track-focused sports car with flat-plane V8",
-    photo: "mercedes.jpeg" // Add photo link here
+    photo: "./pics/mercedes.jpeg" // Add photo link here
   }
 ];
 
 function Cars({ car }) {
   return (
-    <div className="carsContainer" style={{ border: '1px solid #ccc', margin: '10px', padding: '10px', borderRadius: '5px' }}>
+    <div 
+      className="carCard" 
+      style={{
+        border: '1px solid #ccc', 
+        margin: '10px', 
+        borderRadius: '10px', 
+        overflow: 'hidden', 
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', 
+        backgroundColor: '#fff'
+      }}
+    >
       <img 
         src={car.photo} 
         alt={car.name} 
-        style={{ width: '100%', height: '200px', objectFit: 'cover', borderRadius: '5px' }} 
+        style={{
+          width: '100%', 
+          height: '200px', 
+          objectFit: 'cover'
+        }} 
       />
-      <div className="carDetails" style={{ marginTop: '10px' }}>
-        <h2>{car.name}</h2>
+      <div 
+        className="carDetails" 
+        style={{ padding: '10px' }}
+      >
+        <h2 style={{ fontSize: '1.5rem', margin: '0 0 10px 0' }}>{car.name}</h2>
         <p><strong>Brand:</strong> {car.brand}</p>
         <p><strong>Price:</strong> ${car.price.toLocaleString()}</p>
         <p><strong>Top Speed:</strong> {car.topSpeed}</p>
@@ -100,8 +117,15 @@ function Cars({ car }) {
 
 function CarsList() {
   return (
-    <div>
-      <h1>Car Collection</h1>
+    <div 
+      className="carsList" 
+      style={{
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', 
+        gap: '20px', 
+        padding: '20px'
+      }}
+    >
       {cars.map((car) => (
         <Cars key={car.id} car={car} />
       ))}
@@ -109,5 +133,4 @@ function CarsList() {
   );
 }
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<CarsList />);
+export default CarsList;
